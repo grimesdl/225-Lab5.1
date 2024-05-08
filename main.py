@@ -65,7 +65,7 @@ def index():
                 <input type="text" id="name" name="name" required><br>
                 <label for="phone">Phone Number:</label><br>
                 <input type="text" id="phone" name="phone" required><br><br>
-                <label for="class">Class:</label><br> # Add class input field
+                <label for="class">Class:</label><br>     <!-- Add class input field -->
                 <input type="text" id="class" name="class" required><br><br>
                 <input type="submit" value="Submit">
             </form>
