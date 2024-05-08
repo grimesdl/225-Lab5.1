@@ -40,9 +40,9 @@ def index():
             name = request.form.get('name')
             phone = request.form.get('phone')
             fclass = request.form.get('fclass') # Get class from form
-            if name and phone and class:
+            if name and phone and fclass:
                 db = get_db()
-                db.execute('INSERT INTO contacts (name, phone, fclass) VALUES (?, ?, ?)', (name, phone, class)) #Insert class into database
+                db.execute('INSERT INTO contacts (name, phone, fclass) VALUES (?, ?, ?)', (name, phone, fclass)) #Insert class into database
                 db.commit()
                 message = 'Contact added successfully.'
             else:
