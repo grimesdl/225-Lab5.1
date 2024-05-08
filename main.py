@@ -65,7 +65,7 @@ def index():
                 <input type="text" id="name" name="name" required><br>
                 <label for="phone">Phone Number:</label><br>
                 <input type="text" id="phone" name="phone" required><br><br>
-                <label for="class">Class:</label><br>     <!-- Add class input field -->
+                <label for="class">Class:</label><br>         <!-- Add class input field -->
                 <input type="text" id="class" name="class" required><br><br>
                 <input type="submit" value="Submit">
             </form>
@@ -75,14 +75,14 @@ def index():
                     <tr>
                         <th>Name</th>
                         <th>Phone Number</th>
-                        <th>Class</th> # Add column header for class
+                        <th>Class</th>     <!-- Add column header for class -->
                         <th>Delete</th>
                     </tr>
                     {% for contact in contacts %}
                         <tr>
                             <td>{{ contact['name'] }}</td>
                             <td>{{ contact['phone'] }}</td>
-                            <td>{{ contact['class'] }}</td>     # Display class
+                            <td>{{ contact['class'] }}</td>     <!-- Display class -->
                             <td>
                                 <form method="POST" action="/">
                                     <input type="hidden" name="contact_id" value="{{ contact['id'] }}">
