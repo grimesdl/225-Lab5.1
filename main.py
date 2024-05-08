@@ -20,7 +20,7 @@ def init_db():
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
                 phone TEXT NOT NULL,
-                email TEXT NOT NULL
+                favorite TEXT NOT NULL
             );
         ''')
         db.commit()
@@ -39,10 +39,10 @@ def index():
         else:
             name = request.form.get('name')
             phone = request.form.get('phone')
-            email = request.form.get('email') # Get class from form
-            if name and phone and email:
+            favorite = request.form.get('favorite') # Get class from form
+            if name and phone and favorite:
                 db = get_db()
-                db.execute('INSERT INTO contacts (name, phone, email) VALUES (?, ?, ?)', (name, phone, email)) #Insert class into database
+                db.execute('INSERT INTO contacts (name, phone, favorite) VALUES (?, ?, ?)', (name, phone, favorite)) #Insert class into database
                 db.commit()
                 message = 'Contact added successfully.'
             else:
@@ -66,8 +66,8 @@ def index():
                 <input type="text" id="name" name="name" required><br>
                 <label for="phone">Phone Number:</label><br>
                 <input type="text" id="phone" name="phone" required><br><br>
-                <label for="email">Class:</label><br>         <!-- Add class input field -->
-                <input type="text" id="email" name="email" required><br><br>
+                <label for="favorite">Class:</label><br>         <!-- Add class input field -->
+                <input type="text" id="favorite" name="favorite" required><br><br>
                 <input type="submit" value="Submit">
             </form>
             <p>{{ message }}</p>
@@ -83,7 +83,7 @@ def index():
                         <tr>
                             <td>{{ contact['name'] }}</td>
                             <td>{{ contact['phone'] }}</td>
-                            <td>{{ contact['email'] }}</td>     <!-- Display class -->
+                            <td>{{ contact['favorite'] }}</td>     <!-- Display class -->
                             <td>
                                 <form method="POST" action="/">
                                     <input type="hidden" name="contact_id" value="{{ contact['id'] }}">
