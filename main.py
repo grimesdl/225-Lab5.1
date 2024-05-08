@@ -19,7 +19,8 @@ def init_db():
             CREATE TABLE IF NOT EXISTS contacts (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
-                phone TEXT NOT NULL
+                phone TEXT NOT NULL,
+                class TEXT NOT NULL
             );
         ''')
         db.commit()
@@ -56,7 +57,7 @@ def index():
         <!DOCTYPE html>
         <html>
         <head>
-            <title>Contacts</title>
+            <title>Contact Information and Favorite Class</title>
         </head>
         <body>
             <h2>Add contact information, and say what your favorite class was that you have taken!</h2>
