@@ -38,13 +38,14 @@ def index():
         else:
             name = request.form.get('name')
             phone = request.form.get('phone')
-            if name and phone:
+            class = request.form.get('class') # Get class from form
+            if name and phone and class:
                 db = get_db()
-                db.execute('INSERT INTO contacts (name, phone) VALUES (?, ?)', (name, phone))
+                db.execute('INSERT INTO contacts (name, phone, class) VALUES (?, ?, ?)', (name, phone, class)) #Insert class into database
                 db.commit()
                 message = 'Contact added successfully.'
             else:
-                message = 'Missing name or phone number.'
+                message = 'Missing name, phone number, or class. Try again.' # Edited this message to include class
 
     # Always display the contacts table
     db = get_db()
@@ -58,12 +59,14 @@ def index():
             <title>Contacts</title>
         </head>
         <body>
-            <h2>Add Contact</h2>
+            <h2>Add contact information, and say what your favorite class was that you have taken!</h2>
             <form method="POST" action="/">
                 <label for="name">Name:</label><br>
                 <input type="text" id="name" name="name" required><br>
                 <label for="phone">Phone Number:</label><br>
                 <input type="text" id="phone" name="phone" required><br><br>
+                <label for="class">Class:</label><br> # Add class input field
+                <input type="text" id="class" name="class" required><br><br>
                 <input type="submit" value="Submit">
             </form>
             <p>{{ message }}</p>
@@ -72,12 +75,14 @@ def index():
                     <tr>
                         <th>Name</th>
                         <th>Phone Number</th>
+                        <th>Class</th> # Add column header for class
                         <th>Delete</th>
                     </tr>
                     {% for contact in contacts %}
                         <tr>
                             <td>{{ contact['name'] }}</td>
                             <td>{{ contact['phone'] }}</td>
+                            <td>{{ contact['class'] }}</td>     # Display class
                             <td>
                                 <form method="POST" action="/">
                                     <input type="hidden" name="contact_id" value="{{ contact['id'] }}">
