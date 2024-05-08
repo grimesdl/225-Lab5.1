@@ -12,7 +12,7 @@ def generate_test_data(num_contacts):
     db = connect_db()
 
     # Add "favorite class" column to table if it doesn't already exist
-    db.execute('''ALTER TABLE contacts ADD COLUMN "favclass" TEXT''')
+    db.execute('''ALTER TABLE contacts ADD COLUMN class TEXT''')
     db.commit()
     
     for i in range(num_contacts):
