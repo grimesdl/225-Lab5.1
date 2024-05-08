@@ -20,7 +20,7 @@ def init_db():
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
                 phone TEXT NOT NULL,
-                class TEXT NOT NULL
+                fclass TEXT NOT NULL
             );
         ''')
         db.commit()
@@ -39,10 +39,10 @@ def index():
         else:
             name = request.form.get('name')
             phone = request.form.get('phone')
-            class = request.form.get('class') # Get class from form
+            fclass = request.form.get('fclass') # Get class from form
             if name and phone and class:
                 db = get_db()
-                db.execute('INSERT INTO contacts (name, phone, class) VALUES (?, ?, ?)', (name, phone, class)) #Insert class into database
+                db.execute('INSERT INTO contacts (name, phone, fclass) VALUES (?, ?, ?)', (name, phone, class)) #Insert class into database
                 db.commit()
                 message = 'Contact added successfully.'
             else:
@@ -66,8 +66,8 @@ def index():
                 <input type="text" id="name" name="name" required><br>
                 <label for="phone">Phone Number:</label><br>
                 <input type="text" id="phone" name="phone" required><br><br>
-                <label for="class">Class:</label><br>         <!-- Add class input field -->
-                <input type="text" id="class" name="class" required><br><br>
+                <label for="fclass">Class:</label><br>         <!-- Add class input field -->
+                <input type="text" id="fclass" name="fclass" required><br><br>
                 <input type="submit" value="Submit">
             </form>
             <p>{{ message }}</p>
@@ -76,14 +76,14 @@ def index():
                     <tr>
                         <th>Name</th>
                         <th>Phone Number</th>
-                        <th>Class</th>     <!-- Add column header for class -->
+                        <th>Favorite Class</th>     <!-- Add column header for class -->
                         <th>Delete</th>
                     </tr>
                     {% for contact in contacts %}
                         <tr>
                             <td>{{ contact['name'] }}</td>
                             <td>{{ contact['phone'] }}</td>
-                            <td>{{ contact['class'] }}</td>     <!-- Display class -->
+                            <td>{{ contact['fclass'] }}</td>     <!-- Display class -->
                             <td>
                                 <form method="POST" action="/">
                                     <input type="hidden" name="contact_id" value="{{ contact['id'] }}">
