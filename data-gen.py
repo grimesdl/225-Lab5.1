@@ -11,7 +11,7 @@ def generate_test_data(num_contacts):
     """Generate test data for the contacts table."""
     db = connect_db()
 
-    # Add "facorite class" column to table if it doesn't already exist
+    # Add "favorite class" column to table if it doesn't already exist
     db.execute('''ALTER TABLE contacts ADD COLUMN favclass TEXT''')
     db.commit()
     
