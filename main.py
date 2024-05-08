@@ -39,7 +39,7 @@ def index():
         else:
             name = request.form.get('name')
             phone = request.form.get('phone')
-            fclass = request.form.get('email') # Get class from form
+            email = request.form.get('email') # Get class from form
             if name and phone and email:
                 db = get_db()
                 db.execute('INSERT INTO contacts (name, phone, email) VALUES (?, ?, ?)', (name, phone, email)) #Insert class into database
