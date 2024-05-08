@@ -36,7 +36,7 @@ def index():
             db = get_db()
             db.execute('DELETE FROM contacts WHERE id = ?', (contact_id,))
             db.commit()
-            message = 'Contact deleted successfully.'
+            message = 'Contact/Information deleted successfully.'
         else:
             name = request.form.get('name')
             phone = request.form.get('phone')
@@ -46,7 +46,7 @@ def index():
                 db = get_db()
                 db.execute('INSERT INTO contacts (name, phone, favorite, moment) VALUES (?, ?, ?, ?)', (name, phone, favorite, moment)) #Insert class and moment into database
                 db.commit()
-                message = 'Contact added successfully.'
+                message = 'Contact/Information added successfully.'
             else:
                 message = 'Missing name, phone number, class, or moment. Try again.' # Edited this message to include class
 
@@ -59,7 +59,7 @@ def index():
         <!DOCTYPE html>
         <html>
         <head>
-            <title>Contact Information and Favorite Class</title>
+            <title>Contact Information and Favorite Class/Moment</title>
         </head>
         <body>
             <h2>Add contact information, and say what your favorite class was that you have taken!</h2>
