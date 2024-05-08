@@ -18,7 +18,7 @@ def generate_test_data(num_contacts):
     for i in range(num_contacts):
         name = f'Test Name {i}'
         phone = f'123-456-789{i}'
-        favorite_class = f'My favorite class was CIT225{i}' # Add favorite class
+        class = f'My favorite class was CIT225{i}' # Add favorite class
         db.execute('INSERT INTO contacts (name, phone, class) VALUES (?, ?, ?)', (name, phone, class)) # Include favorite class in INSERT statement
     db.commit()
     print(f'{num_contacts} test contacts added to the database.')
