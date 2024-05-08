@@ -12,14 +12,14 @@ def generate_test_data(num_contacts):
     db = connect_db()
 
     # Add "facorite class" column to table if it doesn't already exist
-    db.execute('''ALTER TABLE contacts ADD COLUMN fclass TEXT''')
+    db.execute('''ALTER TABLE contacts ADD COLUMN favclass TEXT''')
     db.commit()
     
     for i in range(num_contacts):
         name = f'Test Name {i}'
         phone = f'123-456-789{i}'
-        fclass = f'My favorite class was CIT225{i}' # Add favorite class
-        db.execute('INSERT INTO contacts (name, phone, fclass) VALUES (?, ?, ?)', (name, phone, fclass)) # Include favorite class in INSERT statement
+        favclass = f'My favorite class was CIT225{i}' # Add favorite class
+        db.execute('INSERT INTO contacts (name, phone, favclass) VALUES (?, ?, ?)', (name, phone, fclass)) # Include favorite class in INSERT statement
     db.commit()
     print(f'{num_contacts} test contacts added to the database.')
     db.close()
